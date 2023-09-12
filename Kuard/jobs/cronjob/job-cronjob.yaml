@@ -1,0 +1,14 @@
+apiVersion: batch/v1
+kind: cronJob
+metadata:
+  name: example-cron
+spec:
+  schedule: "0 */5 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - image: gcr.io/kuar-demo/kuard-amd64:blue
+              name: batch-job
+          restartPolicy: OnFailure
