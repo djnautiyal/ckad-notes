@@ -2,11 +2,13 @@
 ## Kubernetes Pod Design for Application Developers
 ### Definition Basics
 - alias k=kubectl
+- alias k_ns='kubectl config set-context --current'
 - watch kubectl get nodes
 - source <(kubectl completion bash)
 - kubectl explain Pod.spec.containers.image
 - kubectl get pod first-pod -o yaml | less
 - k config current-context
+- k explain deploy --recursive=true | less
 
 ### Labels, Selectors, and Annotations
 - kubectl get pods -L color,tier
