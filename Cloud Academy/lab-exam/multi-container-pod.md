@@ -1,6 +1,7 @@
 ## Check 1: Pod with Legacy Logs
 
-A Pod in the mcp namespace has a single container named random that writes its logs to the /var/log/random.log file. Add a second container named second that uses the busybox image to allow the following command to display the logs written to the random container's /var/log/random.log file:
+A Pod in the mcp namespace has a single container named random that writes its logs to the /var/log/random.log file. 
+Add a second container named second that uses the busybox image to allow the following command to display the logs written to the random container's /var/log/random.log file:
 
 ```kubectl -n mcp logs random second```
 
@@ -13,35 +14,36 @@ Multi-Container Pod Manifest:
 apiVersion: v1
 kind: Pod
 metadata:
-name: webpod
+  name: webpod
 namespace: app1
 spec:
-restartPolicy: Never
-volumes:
-- name: vol1
-  emptyDir: {}
+  restartPolicy: Never
+  volumes:
+  - name: vol1
+    emptyDir: {}
   containers:
-- name: c1
+  - name: c1
   image: nginx
   volumeMounts:
-    - name: vol1
-      mountPath: /usr/share/nginx/html
-      lifecycle:
+  - name: vol1
+    mountPath: /usr/share/nginx/html
+    lifecycle:
       postStart:
-      exec:
-      command:
-      - "bash"
-      - "-c"
-      - |
-      date | sha256sum | tr -d " *-" > /usr/share/nginx/html/index.html
-- name: c2
-  image: appropriate/curl
-  command: ["/bin/sh", "-c", "curl -s http://<REPLACE_HOST_HERE> && sleep 3600"]
+        exec:
+        command:
+        - "bash"
+        - "-c"
+        - |
+          date | sha256sum | tr -d " *-" > /usr/share/nginx/html/index.html
+  - name: c2
+    image: appropriate/curl
+    command: ["/bin/sh", "-c", "curl -s http://<REPLACE_HOST_HERE> && sleep 3600"]
 ```
 
 ## Check 3: Add New Container with ReadOnly Volume
 
-Update and deploy the provided /home/ubuntu/md5er-app.yaml manifest file, adding a second container named c2 to the existing md5er Pod. The c2 container will run the same bash image that the c1 container already uses. The c2 container must mount the existing vol1 volume in read only mode, and such that it can execute the following bash script:
+Update and deploy the provided /home/ubuntu/md5er-app.yaml manifest file, adding a second container named c2 to the existing md5er Pod. 
+The c2 container will run the same bash image that the c1 container already uses. The c2 container must mount the existing vol1 volume in read only mode, and such that it can execute the following bash script:
 
 ```shell
 
