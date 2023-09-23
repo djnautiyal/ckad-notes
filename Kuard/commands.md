@@ -189,6 +189,7 @@ gcr.io/kuar-demo/kuard-amd64:blue
 ### To run script, download git bash
 ## Jobs related commands
 - kubectl run -i oneshot --image=gcr.io/kuar-demo/kuard-amd64:blue --restart=OnFailure --command /kuard -- --keygen-enable --keygen-exit-on-complete --keygen-num-to-gen 10
+- kubectl create job pi --image=perl:5.34 -- perl -Mbignum=bpi -wle 'print bpi(2000)'
 - kubectl get jobs -A
 - kubectl delete pods oneshot
 - kubectl logs oneshot-jr9j4
