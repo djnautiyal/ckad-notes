@@ -127,6 +127,34 @@ See if you can get the last 10 lines out of one of kube-proxy Pods' /etc/mtab fi
 - kubectl run busybox -n test --image=busybox --env="web_ip=$web_ip" --rm -it /bin/sh
   wget $web_ip
 
+## All the components of the cluster are running in pods in the kube-system namespace:
+- calico: The container network used to connect each node to every other node in the cluster. Calico also supports network policy. Calico is one of many possible container networks that can be used by Kubernetes. 
+- coredns: Provides DNS services to nodes in the cluster 
+- etcd: The primary data store of all cluster state 
+- kube-apiserver: The REST API server for managing the Kubernetes cluster 
+- kube-controller-manager: Manager of all of the controllers in the cluster that monitor and change the cluster state when necessary 
+- kube-proxy: Network proxy that runs on each node 
+- kube-scheduler: Control plane process which assigns Pods to Nodes 
+- metrics-server: Not an essential component of a Kubernetes cluster but it is used in this lab to provide metrics for viewing in the Kubernetes dashboard. 
+- ebs-csi: Not an essential component of a Kubernetes cluster but is used to manage the lifecycle of Amazon EBS volumes for persistent volumes.
+
+## Headless service
+Headless Service: A headless service is a Kubernetes service resource that won't load balance behind a single service IP. 
+Instead, a headless service returns a list of DNS records that point directly to the pods that back the service. A headless service is defined by declaring the clusterIP property in a service spec and setting the value to None. 
+StatefulSets currently require a headless service to identify pods in the cluster network.
+
+## Stateful sets
+Similar to Deployments in Kubernetes, StatefulSets manage the deployment and scaling of pods given a container spec. 
+StatefulSets differ from Deployments in that the Pods in a stateful set are not interchangeable. 
+Each pod in a StatefulSet has a persistent identifier that it maintains across any rescheduling. 
+The pods in a StatefulSet are also ordered. This provides a guarantee that one pod can be created before following pods. 
+
+## PersistentVolumes (PVs) and PersistentVolumeClaims (PVCs)
+PVs are Kubernetes resources that represent storage in the cluster. 
+Unlike regular Volumes which exist only until while containing pod exists, PVs do not have a lifetime connected to a pod. 
+Thus, they can be used by multiple pods over time, or even at the same time. 
+Different types of storage can be used by PVs including NFS, iSCSI, and cloud-provided storage volumes, such as AWS EBS volumes. Pods claim PV resources through PVCs.
+
 
 
 
