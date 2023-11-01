@@ -140,7 +140,8 @@ See if you can get the last 10 lines out of one of kube-proxy Pods' /etc/mtab fi
 
 ## Headless service
 Headless Service: A headless service is a Kubernetes service resource that won't load balance behind a single service IP. 
-Instead, a headless service returns a list of DNS records that point directly to the pods that back the service. A headless service is defined by declaring the clusterIP property in a service spec and setting the value to None. 
+Instead, a headless service returns a list of DNS records that point directly to the pods that back the service. 
+A headless service is defined by declaring the clusterIP property in a service spec and setting the value to None. 
 StatefulSets currently require a headless service to identify pods in the cluster network.
 
 ## Stateful sets
