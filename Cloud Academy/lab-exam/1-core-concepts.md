@@ -34,7 +34,7 @@ Generate a new Pod manifest file which contains the following configuration:
 - Environment variable: system=borg
 Save the resulting manifest to the following location: /home/ubuntu/pod.yaml
 
-## Check 6: Launch Pod and Configure it's Termination Shutdown Time
+## Check 6: Launch Pod and Configure its Termination Shutdown Time
 Launch a new web server Pod in the sys2 namespace with the following configuration:
 - Pod name: web-zeroshutdown
 - Container image: nginx
