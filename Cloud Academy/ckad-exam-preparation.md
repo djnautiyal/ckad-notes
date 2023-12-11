@@ -156,6 +156,7 @@ Unlike regular Volumes which exist only until while containing pod exists, PVs d
 Thus, they can be used by multiple pods over time, or even at the same time. 
 Different types of storage can be used by PVs including NFS, iSCSI, and cloud-provided storage volumes, such as AWS EBS volumes. Pods claim PV resources through PVCs.
 
-
+# ResourceQuota vs LimitRange
+The resource quota is the total available resources for a particular namespace, while limit range is used to assign limits for containers running inside the namespace
 
 
