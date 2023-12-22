@@ -1,8 +1,7 @@
 # Hands-ON lab
 ## Kubernetes Pod Design for Application Developers
 ### Definition Basics
-- alias k=kubectl
-- alias k_ns='kubectl config set-context --current'
+- alias k=kubectl; alias kns="kubectl config set-context --current --namespace"; alias ka="kubectl apply -f"; alias ke="kubectl explain"; alias kd="kubectl describe";
 - watch kubectl get nodes
 - source <(kubectl completion bash)
 - kubectl explain Pod.spec.containers.image
